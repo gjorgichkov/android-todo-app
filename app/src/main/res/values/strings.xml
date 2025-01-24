@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="attention">Attention</string>
+    <string name="back_button">Back</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no_todo_description">No tasks left to do!\nTap + to add.</string>
+    <string name="edit_todo_title">Edit ToDo</string>
+    <string name="todo">ToDo</string>
+    <string name="todo_detail_title">Todo Details</string>
+    <string name="todo_entry_title">Add ToDo</string>
+    <string name="todo_title_req">ToDo Title*</string>
+    <string name="todo_desc_req">ToDo Description*</string>
+    <string name="no">No</string>
+    <string name="description">Description</string>
+    <string name="save_action">Save</string>
+    <string name="yes">Yes</string>
+    <string name="required_fields">*required fields</string>
+
+    <!-- Reminders-->
+    <string name="set_reminder">Set Reminder</string>
+    <string name="remind_me">Remind me to do %s in…</string>
+    <string name="five_seconds">5 seconds</string>
+    <string name="one_day">1 day</string>
+    <string name="one_week">1 week</string>
+    <string name="one_month">1 month</string>
+    <string name="time_to_do">It\'s time to do %s.</string>
+</resources>
