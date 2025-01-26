@@ -93,6 +93,16 @@ fun ToDoScreen(
             )
             Button(
                 onClick = {
+                    showReminderDialog = true
+                },
+                enabled = viewModel.toDoUiState.isEntryValid,
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = stringResource(R.string.set_reminder))
+            }
+            Button(
+                onClick = {
                     coroutineScope.launch {
                         viewModel.saveOrUpdateItem()
                         navigateBack()
@@ -117,21 +127,12 @@ fun ToDoScreen(
                 ) {
                     Text(text = stringResource(R.string.delete))
                 }
-                Button(
-                    onClick = {
-                        showReminderDialog = true
-                    },
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(text = stringResource(R.string.set_reminder))
-                }
             }
             if (showReminderDialog) {
                 ReminderDialogContent(
                     onDialogDismiss = { showReminderDialog = false },
                     toDoTitle = viewModel.toDoUiState.toDoDetails.title,
-                    onScheduleReminder = { viewModel.scheduleReminder(it) }
+                    onScheduleReminder = { viewModel.setPendingReminder(it) }
                 )
             }
         }

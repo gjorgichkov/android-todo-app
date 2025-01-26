@@ -20,6 +20,8 @@ class ToDoViewModel(
     var toDoUiState by mutableStateOf(ToDoUiState())
         private set
 
+    private var pendingReminder: Reminder? = null
+
     private val toDoId: Int = savedStateHandle.get<Int>("toDoId") ?: -1
 
     init {
@@ -45,8 +47,10 @@ class ToDoViewModel(
         if (toDoUiState.isEntryValid) {
             if (toDoId != -1) {
                 toDosRepository.updateToDo(toDoUiState.toDoDetails.toToDo())
+                schedulePendingReminder()
             } else {
                 toDosRepository.insertToDo(toDoUiState.toDoDetails.toToDo())
+                schedulePendingReminder()
             }
         }
     }
@@ -59,6 +63,17 @@ class ToDoViewModel(
 
     private fun validateInput(uiState: ToDoDetails = toDoUiState.toDoDetails): Boolean {
         return uiState.title.isNotBlank() && uiState.description.isNotBlank()
+    }
+
+    fun setPendingReminder(reminder: Reminder) {
+        pendingReminder = reminder
+    }
+
+    private fun schedulePendingReminder() {
+        pendingReminder?.let { reminder ->
+            scheduleReminder(reminder)
+            pendingReminder = null
+        }
     }
 
     fun scheduleReminder(reminder: Reminder) {
